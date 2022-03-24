@@ -1,9 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 
-const alchemyApiUrl = process.env.ALCHEMY_API_URL;
-const privateKey = process.env.RINKEBY_ACCOUNT_KEY;
-
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -24,8 +21,8 @@ module.exports = {
   solidity: "0.8.0",
   networks: {
     rinkeby: {
-      url: alchemyApiUrl,
-      accounts: [privateKey],
+      url: process.env.ALCHEMY_API_URL,
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
 };
