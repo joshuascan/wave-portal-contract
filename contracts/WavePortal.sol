@@ -27,8 +27,8 @@ contract WavePortal {
 
   function wave(string memory _message) public {
     require(
-      lastWavedAt[msg.sender] + 30 seconds < block.timestamp,
-      "Must wait 30 seconds before waiving again."
+      lastWavedAt[msg.sender] + 5 minutes < block.timestamp,
+      "Must wait 5 minutes before waiving again."
     );
 
     lastWavedAt[msg.sender] = block.timestamp;
@@ -47,7 +47,7 @@ contract WavePortal {
       uint256 prizeAmount = 0.0001 ether;
       require(
         prizeAmount <= address(this).balance,
-        "Trying to withdraw more money than the sontract has."
+        "Trying to withdraw more money than the contract has."
       );
       (bool success, ) = (msg.sender).call{value: prizeAmount}("");
       require(success, "Failed to withdraw money from contract.");
